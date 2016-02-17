@@ -85,6 +85,7 @@ unzip # pro, para varios archivos:
 vi    :%s/FindMe/ReplaceME/g
 	#replace with vi for ex. replace UNIX for Linux using in vi the following :%s/UNIX/Linux/g
 
+md5sum myFile #para saber el hash code de un archivo
 ###### M u c h o   m a s   #######################
 #   http://www.guia-ubuntu.com/?title=Comandos   #
 ##################################################
