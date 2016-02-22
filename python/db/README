@@ -1,0 +1,5 @@
+'''
+Esta carpeta contiene el script en python para crear una base de datos sqlite simple, a partir e un archivo csv. Muy sencillo y funcional para manipular grandes volumens de datos. 
+
+También nos ayuda a poder crear tablas de 2 bases de datos diferentes y no compatibles entre sí (es decir, no al menos con un DBLink), por ejemplo una Oracle y otra SQL Server, que compartan una misma PRIMARY KEY, permitiendonos realizar JOINS,, que de otra manera no serían posibles.
+'''
