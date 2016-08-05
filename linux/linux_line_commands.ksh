@@ -91,3 +91,67 @@ md5sum myFile #para saber el hash code de un archivo
 ##################################################
 00038162
 125760
+grep
+
+Busca en la entrada, líneas que concuerden con el patrón dado. Cualquier meta-carácter con un significado especial debe ser protegido precediéndolo con una barra inclinada inversa (\ ). Algunos patrones de grep se encierran entre '..' (apóstrofos) para indicarle que no es un metacarácter del sehll. También existe en su versión zgrep para buscar en archivos comprimidos.
+
+grep [opciones] 'patrón' archivos
+
+grep "ejemplo" * listara las lineas que concuerden con la cadena ejemplo de "todos" los archivos del directorio actual.
+
+grep -i hola pp.txt considera idénticas las mayúsculas y minúscula en la cadena de búsqueda hola. (hola=HOLA=Hola=etc.).
+
+grep -ri "hola" ./ busca en los archivos del directorio actual y los subdirectorios la palabra hola.
+
+grep -v hola pp.txt lista las líneas que no contengan la cadena hola del archivo pp.txt
+
+grep -n hola pp.txt las líneas concordantes con la cadena hola del archivo pp.txt se mostrarán acompañadas del número de línea.
+
+grep -w sobre pp.txt listara solamente aquellas líneas que contienen concordancias que forman palabras completas.
+
+grep -A 2 hola pp.txt muestra 2 líneas de contexto después de las que concuerden con el patrón hola.
+
+grep -B 2 hola pp.txt muestra 2 líneas de contexto antes de las que concuerden con el patrón hola.
+
+grep -f patron.txt pp.txt obtiene el patrón de fichero patron.txt y listara líneas concordantes del archivo pp.txt
+
+grep -s "ejemplo" * suprime los mensajes de error sobre ficheros que no existen o no se pueden leer.
+
+grep [123] pp.txt listara las lineas que contengan los números 1, 2 o 3
+
+grep '^L' pp.txt lista las lineas de pp.txt que comiencen la línea con el carácter L, el carácter ^ denota inicio de cadena.
+
+grep 'h$' pp.txt lista las líneas de pp.txt que terminen en h, el carácter $ denota fin de cadena.
+
+grep '\<pe' pp.txt muestra todas las líneas de pp.txt que contengan palabras que comiencen con la cadena pe.
+
+grep '\>pe' pp.txt muestra todas las líneas de pp.txt que contengan palabras que finalicen con la cadena pe.
+
+grep 'xy*' pp busca en pp una x seguida por la secuencia más larga de y.
+
+grep '^[^#]' pp.txt muestra pp.txt, ocultando las líneas que empiezan por # y las líneas vaciás.
+
+grep -o patron archivo muestra solo la parte de la linea que coincide con el patrón.
+
+grep --color=always '\bing[[:space:]]' pp.txt | less -R la palabra ing seguida de un espacio sera coloriada y esta redirigida al comando less sin perder el color.
+
+grep -Eio '([[:alnum:]_.-]+@[[:alnum:]_.-]+?\.[[:alpha:].]{2,6})' archivo.txt muestra solo las direcciones de e-mail (no todo la linea que la contiene), del archivo.txt.
+
+cat uu.txt | grep -oE '.*111111' muestra desde el principio de la linea hasta la ocurrencia 111111
+
+# cat uu.txt 
+73272028636f6e7461696e657269642054455854205051111115259204b4559204e4f54204e554c4c2c736
+cat uu.txt | grep -oE '.*111111'
+73272028636f6e7461696e65726964205445585420505111111
+Si quisiéramos mostrar desde la ocurrencia hasta el final de la linea sería.
+
+# cat uu.txt | grep -oE '111111.*'
+1111115259204b4559204e4f54204e554c4c2c736
+Para mostrar el contenido de la línea entre dos ocurrencias por ejemplo entre 6169 y 111111 sería:
+
+# cat uu.txt | grep -oE '6169.*111111'
+61696e65726964205445585420505111111
+En caso que quisiéramos mostrar el final de la linea excluyendo la ocurrencia sería:
+
+# cat uu.txt | awk -F111111 '{print $NF}'
+5259204b4559204e4f54204e554c4c2c736
